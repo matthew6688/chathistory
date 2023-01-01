@@ -1,0 +1,16 @@
+let messages = [];
+_.each(payload.data, (item) => {
+    if (item.content === ''){
+        return ;
+    }
+    let message = '';
+    if (item.type === 'in'){
+        message = 'User: ';
+    }else if (item.type === 'out'){
+        message = 'Bot: ';
+    }else if (item.type === 'agent'){
+        message = 'Agent: ';
+    }
+    messages.unshift(message + item.content);
+})
+return {text: _.join(messages, "\n")};
